@@ -45,4 +45,44 @@ public abstract class Logger {
     public void fatal(CharSequence message) {
         fatal(message, null);
     }
+
+    public void debug(Object message, Throwable t) {
+        debug(message.toString(), t);
+    }
+
+    public void info(Object message, Throwable t) {
+        info(message.toString(), t);
+    }
+
+    public void warn(Object message, Throwable t) {
+        warn(message.toString(), t);
+    }
+
+    public void error(Object message, Throwable t) {
+        error(message.toString(), t);
+    }
+
+    public void fatal(Object message, Throwable t) {
+        fatal(message.toString(), t);
+    }
+
+    public void debug(Object message) {
+        debug(message.toString(), null);
+    }
+
+    public void info(Object message) {
+        info(message.toString(), null);
+    }
+
+    public void warn(Object message) {
+        warn(message.toString(), null);
+    }
+
+    public void error(Object message) {
+        error(message.toString(), null);
+    }
+
+    public void fatal(Object message) {
+        fatal(message.toString(), null);
+    }
 }
