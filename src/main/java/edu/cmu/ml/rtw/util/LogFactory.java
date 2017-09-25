@@ -38,14 +38,14 @@ public class LogFactory {
     }
 
     public static Logger getLogger() {
-        if (System.getProperty("log4j.configurationFile") == null)
-            return getNullLogger();
-        else {
+        if (System.getProperty("log4j.configurationFile") == null) {
             String console = System.getProperty("log4j.console");
             if (console != null && console.equals("true"))
                 return getConsoleLogger();
             else 
-                return getL4JLogger();
+                return getNullLogger();
+        } else {
+            return getL4JLogger();
         }
     }
 }
