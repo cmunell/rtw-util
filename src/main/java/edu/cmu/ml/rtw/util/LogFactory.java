@@ -18,6 +18,11 @@ import java.util.List;
  * loadable from the classpath.  The important design goal here is that logging be unobstrusive and
  * not require dependency on 3rd party libraries unless doing otherwise is explicitly turned on
  * programatically or by some configureation.  We can get more sophisticated as needed.
+ *
+ * If the "log4j.configurationFile" is not set but "log4j.console" is set to "true" then a built-in
+ * logging implementation will be used that echos to the console.  This can be useful for small
+ * utilities and suchlike where echoing messages to the console is desirable without having log4j as
+ * a dependency unless the user has configured it.
  */
 public class LogFactory { 
     public static Logger getNullLogger() {
@@ -35,7 +40,12 @@ public class LogFactory {
     public static Logger getLogger() {
         if (System.getProperty("log4j.configurationFile") == null)
             return getNullLogger();
-        else
-            return getL4JLogger();
+        else {
+            String console = System.getProperty("log4j.console");
+            if (console != null && console.equals("true"))
+                return getConsoleLogger();
+            else 
+                return getL4JLogger();
+        }
     }
 }
