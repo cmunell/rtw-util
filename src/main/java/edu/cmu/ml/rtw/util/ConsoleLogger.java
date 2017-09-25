@@ -37,6 +37,6 @@ public class ConsoleLogger extends Logger {
     }
 
     public void fatal(CharSequence message, Throwable t) {
-        fatal(message, t);
+        warn(message, t);
     }
 }
